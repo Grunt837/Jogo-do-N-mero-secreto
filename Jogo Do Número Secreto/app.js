@@ -1,5 +1,5 @@
 let listaDeNumeroSorteados = [];
-let numeroLimite = 10;
+let numeroLimite = 100;
 let numeroSecreto = gerarNumeroSecreto();
 let tentativas = 1;
 
@@ -10,26 +10,26 @@ function exibirTextoNaTela(tag, texto) {
 
 function exibirMensagemInicial() {
     exibirTextoNaTela("h1", "Jogo do Número Secreto");
-    exibirTextoNaTela("p", "Escolha um número entre 1 e 10");
+    exibirTextoNaTela("p", "Escolha um número entre 1 e 100");
 }
 
-mensagemInicial()
+exibirMensagemInicial();
 function verificarChute() {
     let chute = document.querySelector("input").value;
     
     if  (chute == numeroSecreto) { 
     exibirTextoNaTela("h1", "Parabéns!!");
     let palavraTentativa = tentativas > 1 ? "tentativas" : "tentativa";
-    let mensagemTentativas = `Você descobriu o número Secreto (${chute}) com ${tentativas} ${palavraTentativa}`;
+    let mensagemTentativas = `Você descobriu o número Secreto (${chute}) com ${tentativas} ${palavraTentativa}.`;
     exibirTextoNaTela("p", mensagemTentativas);
     document.getElementById("reiniciar").removeAttribute("disabled");
     } else {
         if (chute > numeroSecreto) {
             exibirTextoNaTela("h1", "Errou!!");
-            exibirTextoNaTela("p", `O Número Secreto é Menor que ${chute}`);
+            exibirTextoNaTela("p", `O Número Secreto é Menor que ${chute}.`);
     }   else {
             exibirTextoNaTela("h1", "Errou!!");
-            exibirTextoNaTela("p", `O Número Secreto é Maior que ${chute}`) ;
+            exibirTextoNaTela("p", `O Número Secreto é Maior que ${chute}.`) ;
         } 
         tentativas++;
         limparCampo()
@@ -54,7 +54,7 @@ function gerarNumeroSecreto() {
 }
 
 function limparCampo() {
-    chute = document.querySelector("input");
+    let chute = document.querySelector("input");
     chute.value = "";
 }
 
@@ -63,5 +63,5 @@ function reiniciarJogo() {
     limparCampo();
     tentativas = 1;
     exibirMensagemInicial();
-    document.getElementById("reiniciar").getAttribute("disabled", true);
+    document.getElementById("reiniciar").setAttribute("disabled", true); 
 }
